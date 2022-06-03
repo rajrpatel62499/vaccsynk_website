@@ -1,0 +1,17 @@
+<div class="main-popup-clas">
+    <div class="img-class">
+        <img src="../../../assets/images/re-sche-vec.svg"/>
+    </div>
+    <div class="verify-heading">Are you sure, you want to {{appointment ? 'reschedule' : 'cancel'}} <br/>
+        this appointment?</div>
+    
+    <button  class="click-to-verify cancel-btn" (click)="onNoClick('cancel')">{{appointment ? 'Cancel' : 'No'}}</button>
+    <button  class="click-to-resend-otp sch-btn" (click)="appointment ? rescheduleAppointment() : cancelAppointment()">{{appointment ? 'reschedule' : 'Yes'}}</button>
+
+
+
+    <button class="cross-btn" (click)="onNoClick('cancel')">
+        <img src="../../../assets/images/cross.svg"/>
+    </button>
+    
+</div>

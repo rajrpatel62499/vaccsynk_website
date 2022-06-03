@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Vaccsynk</title>
+  <base href="/">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="keywords" content="Secure Covid-19 Vaccination Management Platform | Vaccsynk">
+  <meta name="og:image" content="https://firebasestorage.googleapis.com/v0/b/og-image-55a26.appspot.com/o/OG.jpg?alt=media&token=262b2518-e5f2-449a-9684-bf50e1085b73" />
+  <meta name="description"  content="Register and schedule for safe Covid-19 vaccination with no time-lag and disparities. Vaccsynk builds integrity by partnering with only trusted Pharmacies.">
+  <link rel="icon" type="image" href="assets/images/Favicon-1.png">
+  <!-- JavaScript Bundle with Popper -->
+  <!-- CSS only -->
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCh-XrnSzsvWbMGIU4yrurvxKjRjad8fBA&libraries=places&language=en"></script>
+<!-- JavaScript Bundle with Popper -->
+<!-- <link href="node_modules/@angular/material/prebuilt-themes/indigo-pink.css" rel="stylesheet"> -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+</head>
+<body>
+  <a id="button" class="btn-show"></a>
+  <app-root></app-root>
+</body>
+<script>
+  
+  var btn = $('.btn-show');
+
+$(document.body).scroll(function() {
+  if ($(document.body).scrollTop() > 300) {
+    btn.addClass('show');
+  } else {
+    btn.removeClass('show');
+  }
+});
+
+btn.on('click', function(e) {
+  e.preventDefault();
+  $('html, body').animate({scrollTop:0}, '300');
+});
+
+
+</script>
+<script>
+  if (global === undefined) {
+    var global = window;
+  }
+</script>
+
+</html>

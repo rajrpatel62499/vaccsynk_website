@@ -1,0 +1,97 @@
+<div class="main-wrapper">
+    <div class="first-row-main" style="padding-top: 0px;">
+        <div class="close-inner-main"><img src="../../../assets/images/cross.svg" (click)="onNoClick()" style="cursor: pointer;"></div>
+        <div class="text-inner-main">1st Dose Details</div>
+    </div>
+    <div class="seperator"></div>
+
+    <div class="main-form-wrapper">
+      <form  [formGroup]="firstDoseForm">
+        <div class="first-row-main">
+            <div class="first-col">Healthcare professional</div>
+            <div class="second-col">
+                <input  maxlength="50" 
+                appInputRestriction="noSpecialChars"
+                [ngClass]="{'is-invalid': (f.administrationName.errors && (f.administrationName.touched))}"
+                
+                formControlName="administrationName" class="text-main" type="text">
+            </div>
+        </div>
+        <div class="first-row-main">
+            <div class="first-col">1st Dose Date</div>
+            <div class="second-col">
+                <input 
+                [ngClass]="{'is-invalid': (f.VISDate.errors && (f.VISDate.touched))}"
+                formControlName="VISDate"
+                placeholder="MM/DD/YYYY"
+                 type="date" class="form-control unstyled"  
+                #dob1
+                 
+                />
+
+                
+            </div>
+
+            <!-- [ngClass]="{
+                'is-invalid': (f.dob.errorss && (f.dob.touched || submitted))
+            }" -->
+            <!-- [maxDate]="today" -->
+        </div>
+        <div class="first-row-main">
+            <div class="first-col">Date Of Birth</div>
+            <div class="second-col">
+                <input 
+                [ngClass]="{'is-invalid': (f.dob.errors && (f.dob.touched))}"
+                formControlName="dob"
+                placeholder="MM/DD/YYYY"
+                 type="date" class="form-control unstyled"  
+                #dob1
+                 
+                />
+
+                
+            </div>
+
+            <!-- [ngClass]="{
+                'is-invalid': (f.dob.errorss && (f.dob.touched || submitted))
+            }" -->
+            <!-- [maxDate]="today" -->
+        </div>
+        <div class="first-row-main">
+            <div class="first-col">Which vaccine product?</div>
+            <div class="second-col">
+                <mat-radio-group formControlName="manufacturer" aria-label="Select an option">
+                    <mat-radio-button  value="Pfizer">Pfizer</mat-radio-button>
+                    <mat-radio-button  value="Moderna">Moderna</mat-radio-button>
+                </mat-radio-group>
+            </div>
+        </div>
+        <div class="first-row-main">
+            <div class="first-col">Manufacturer lot number</div>
+            <div class="second-col">
+                <input maxlength="30"
+                OnlyNumeric
+                [ngClass]="{'is-invalid': (f.lot.errors && (f.lot.touched || submitted))}"
+                formControlName="lot" class="text-main" type="text">
+            </div>
+        </div>
+        <div class="first-row-main">
+            <div class="first-col">Patient Number</div>
+            <div class="second-col">
+                <input maxlength="30"  disabled  [value]="userProfileData?.patientNumber"
+              class="text-main" type="text">
+            </div>
+        </div>
+        <div class="first-row-main">
+            <div class="first-col-inner">
+                <button class="next-btn"
+                [disabled]="isLoading"
+                (click)="onSubmit()">
+                    <i class="fa mr-2" [ngClass]="{'fa-spin fa-spinner': isLoading}"></i>
+
+                    Next</button>
+            </div>
+        </div>
+      </form>
+    </div>
+</div>

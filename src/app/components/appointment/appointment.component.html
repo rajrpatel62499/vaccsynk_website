@@ -1,0 +1,328 @@
+<ng-container>
+
+    <div class="custom-container main-appointment-filed">
+        <!-- <h1 class="small-heading">Appointment</h1> -->
+
+        <div class="inner-wrapper-main">
+            <ng-container *ngIf="appointments.length > 0;else other_content">
+                <!-- <section class="appointment-schedule"  *ngIf="appointments[0]?.dose =='NONE' || appointments[0]?.dose =='SECOND' "> -->
+                <section class="appointment-schedule" >
+
+                    <ng-container *ngIf="appointmentReminders.length > 0 || latestDoseInfo == 'SECOND'; else showAppointments" >
+                        <!-- don't show any appointment if there is any reminder -->
+                    </ng-container>
+                    <ng-template #showAppointments>
+                    <span  class="underline-label">Scheduled Appointment</span>
+
+                        <ng-container *ngFor="let appointment of appointments">
+                            <div class="first-row-page">
+                                <div class="comm-grid">
+                                    <div class="left-heading" *ngIf="!isLoading">Pharmacy :</div>
+                                    <div class="filed-name" *ngIf="!isLoading">{{appointment?.vaccineCenterId?.pharmacyName}}</div>
+                                    <div class="shimmer-main" *ngIf="isLoading"></div>
+                                </div>
+    
+                                <div class="comm-grid">
+                                    <div class="left-heading" *ngIf="!isLoading">Address :</div>
+                                    <div class="filed-name" *ngIf="!isLoading">{{appointment?.vaccineCenterId?.address}}</div>
+                                    <div class="shimmer-main" *ngIf="isLoading"></div>
+    
+                                </div>
+                                <div class="comm-grid">
+                                    <div class="left-heading" *ngIf="!isLoading">Date/Time :</div>
+                                    <div class="filed-name" *ngIf="!isLoading">{{appointment?.scheduleDate |
+                                        date:"MM/dd/yyyy"}} | {{appointment?.scheduleTime}}</div>
+                                    <div class="shimmer-main" *ngIf="isLoading"></div>
+    
+                                </div>
+                                <div class="comm-grid">
+                                    <div class="left-heading" *ngIf="!isLoading">Dose :</div>
+                                    <div class="filed-name" *ngIf="!isLoading">Covid 19 {{appointment?.dose}}</div>
+                                    <div class="shimmer-main" *ngIf="isLoading"></div>
+    
+                                </div>
+    
+                            </div>
+                            <div></div>
+                            <ng-container *ngIf="!userProfile?.facilityId">
+                                
+                                <div class="two-btn-row">
+                                    <button class="btn-cancel" *ngIf="(http.canScheduleStatus$|async) "
+                                        (click)="cancelAppointment(appointment)"> Cancel</button>
+                                    <button class="Reschedule-btn" *ngIf="(http.canScheduleStatus$|async) "
+                                        (click)="openRescheduleDialog(appointment)">Reschedule</button>
+                                </div>
+                            </ng-container>
+                        </ng-container>
+
+                    </ng-template>
+
+                </section>
+            </ng-container>
+            <ng-template #other_content>
+                <div class="col-12">
+                    <ngx-skeleton-loader *ngIf="isLoading" count="1" animation="progress" [theme]="{ 
+                        'border-radius': '5px',
+                        height:'16px',
+                        width: '170px',                        
+                        border: '1px solid white'
+                      }"></ngx-skeleton-loader>
+                    <span class="heading-main" *ngIf="!isLoading">Schedule Appointment</span>
+                    <div class="text-center">
+                        <div class="img-main-inner">
+                            <ngx-skeleton-loader *ngIf="isLoading" count="1" animation="progress" [theme]="{ 
+                                'border-radius': '5px',
+                                height:'299px',
+                                width: '275px',                        
+                                border: '1px solid white'
+                              }"></ngx-skeleton-loader>
+            
+                            <img class="inner-img-main" *ngIf="!isLoading" src="assets/images/Group 248.svg">
+                        </div>
+                        <div class="img-main-inner">
+                            <ngx-skeleton-loader *ngIf="isLoading" count="1" animation="progress" [theme]="{ 
+                                'border-radius': '5px',
+                                height:'42px',
+                                width: '300px',                        
+                                border: '1px solid white'
+                              }"></ngx-skeleton-loader>
+                            <button class="Reschedule-btn mt-3" *ngIf="!isLoading" 
+                            (click)="latestDoseInfo == DoseTypes.NONE ? openDialogCovid19(): redirectToForm() ">
+                                {{ latestDoseInfo == DoseTypes.FIRST ? 'Apply for COVID-19 Second Dose' : 
+                                latestDoseInfo == DoseTypes.NONE ? 'Apply for COVID-19 vaccination' : 'Apply for COVID-19 vaccination'}}
+                                
+                            </button>
+                        </div>
+
+                    </div>
+                </div>
+                <!-- <div class="col-12">
+                    <ngx-skeleton-loader *ngIf="isLoading" count="1" animation="progress" [theme]="{ 
+                        'border-radius': '5px',
+                        height:'16px',
+                        width: '50%',                        
+                        border: '1px solid white'
+                      }"></ngx-skeleton-loader>
+                    <span class="heading-main" *ngIf="!isLoading">
+                        Reminder! Return for a second dose! (¡Recordatorio! ¡Regrese para
+                        la segunda dosis!)</span>
+                    <div class="text-center">
+                        <div class="img-main-inner">
+                            <ngx-skeleton-loader *ngIf="isLoading" count="1" animation="progress" [theme]="{ 
+                                'border-radius': '5px',
+                                height:'299px',
+                                width: '275px',                        
+                                border: '1px solid white'
+                              }"></ngx-skeleton-loader>
+                            <img class="inner-img-main" *ngIf="!isLoading" src="assets/images/Reminder-07.svg">
+
+                        </div>
+                        
+                        <span class="heading-main-inner" *ngIf="isLoading">
+                            <ngx-skeleton-loader count="1" animation="progress" [theme]="{ 
+                                'border-radius': '5px',
+                                height:'16px',
+                                width: '170px',                        
+                                border: '1px solid white'
+                              }"></ngx-skeleton-loader>
+                        </span>
+                        <span class="heading-main-inner" *ngIf="!isLoading">
+                            No reminder found!
+                        </span>
+                    </div>
+                </div> -->
+            </ng-template>
+
+
+            <section class="reminder" *ngIf="appointments.length > 0">
+                <ng-container *ngIf="appointments[0]?.dose=='FIRST'">
+
+                    <div class="second-row-page" *ngIf="appointmentReminders.length > 0">
+                        <span class="underline-label">Reminder! Return for a second dose! (¡Recordatorio! ¡Regrese para
+                            la segunda dosis!)</span>
+                        <!-- <button (click)="printPage()" class="print-btn">
+
+                            <img src="assets/images/print.svg" alt="print" title="print">
+                        </button> -->
+                    </div>
+
+                    <ng-container *ngFor="let reminder of appointmentReminders">
+                        <div class="first-row-page vaccine-grid-main">
+                            <div class="comm-grid">
+                                
+                                <div class="left-heading">Vaccine :</div>
+                                <div class="filed-name">COVID-19 vaccine <br />Vacuna parael COVID-19 </div>
+
+                            </div>
+                            <div class="comm-grid">
+
+                            </div>
+                            <div class="comm-grid">
+                                <div class="left-heading">Date/Time :</div>
+                                <div class="filed-name">{{reminder && reminder.date }}</div>
+                            </div>
+                            <div class="comm-grid">
+                                <div class="left-heading">Vaccine center :</div>
+                                <div class="filed-name">{{reminder && reminder.vaccineCenterId &&  reminder.vaccineCenterId.pharmacyName }}</div>
+                            </div>
+                            <div class="comm-grid">
+
+                            </div>
+
+                        </div>
+                    </ng-container>
+                    <div   *ngIf="appointmentReminders.length > 0" class="paragraph-text-main">
+                        <p>Bring this vaccination record to every vaccination or medical visit. check with your health
+                            care provider to make sure you are not missing any doses of <br />
+                            routinely recommended vaccines.</p>
+                        <p>For more information about COVID-19 and COVID-19 vaccine, visit
+                            <b>cdc.gov/coronavirus/2019-ncov/index.html.</b>
+                        </p>
+                        <p>You can report possible adverse reactions following COVID-19 vaccination to the Vaccine
+                            Adverse Event Reporting System <br />
+                            (VAERS) at <b>vaers.hhs.gov.</b></p>
+                    </div>
+                    <div   *ngIf="appointmentReminders.length > 0" class="paragraph-text-main second-para-main">
+                        <p>Lleve este registro de vacunación a cada  vacunación o visita médica. consulte con su
+                            proveedor de atención médica para asegurarse de que no <br /> esté
+                            omitir cualquier dosis de la recomendada habitualmente vacunas.</p>
+                        <p>Para obtener más información sobre el COVID-19y Vacuna COVID-19, visite
+                            <b>espanol.cdc.gov/coronavirus/2019-ncov/index.html.</b>
+                        </p>
+                        <p>You can report possible adverse reactions following COVID-19 vaccination to the Vaccine
+                            Adverse Event Reporting System <br />
+                            (VAERS) at <b>vaers.hhs.gov.</b></p>
+                    </div>
+                    <!-- <ng-container *ngIf="appointmentReminders.length == 0">
+                    
+                    </ng-container> -->
+                </ng-container>
+            </section>
+
+
+            <section class="doses">
+                <ng-container *ngIf="doses.length > 0">
+                    <div class="second-row-page">                        
+                        <span class="underline-label" >COVID-19 Vaccination Record Card</span>
+                        <!-- <button (click)="printPage()" class="print-btn">
+                            <img src="assets/images/print.svg" alt="print" title="print">
+                    </button> -->
+                    </div>
+                    <div class="short-des-single-line">Please keep this record card, which includes medical
+                        information
+                        about the vaccines you have received.</div>
+                    <div class="short-des-single-line">Por favor, guarde esta tarjeta de registro, que incluye
+                        informacion medica sobre las vacunas que ha recibido.</div>
+                    <div class="first-row-page">
+                        <div class="comm-grid">
+                            <div class="left-heading">Name :</div>
+                            <div class="filed-name">{{ doses[0]?.patientId?.name ? doses[0].patientId.name : '-'}}
+                            </div>
+                            <!-- <div class="shimmer-main" *ngIf="isLoading"></div> -->
+                        </div>
+
+                        <div class="comm-grid">
+                            <div class="left-heading">Date of birth :</div>
+                            <div class="filed-name">
+                            {{ 
+                                doses[0]?.patientId?.birthdate?
+                                (doses[0]?.patientId.birthdate| date:"MM/dd/yyyy") : 
+                                '&nbsp;-' 
+                            }}</div>
+                            <!-- <div class="shimmer-main" *ngIf="isLoading"></div> -->
+                        </div>
+                        <div class="comm-grid">
+                            <div class="left-heading">Patient number:</div>
+                            <div class="filed-name"> {{ doses[0]?.patientNumber ? doses[0].patientNumber :
+                                '&nbsp;-'}}
+                            </div>
+                            <!-- <div class="shimmer-main" *ngIf="isLoading"></div> -->
+                        </div>
+
+                    </div>
+                    <div class="record-num">(medical record or IIS record number)</div>
+                </ng-container>
+
+                <ng-container *ngFor="let dose of doses">
+                    <div class="first-row-page">
+                        <div class="comm-grid">
+                            <div class="left-heading">Vaccine :</div>
+                            <div class="filed-name">COVID-19 <span class="dose-number">({{dose?.doseNumber}} Dose)</span>  </div>
+                        </div>
+                        <div class="comm-grid">
+                            <div class="left-heading">Date:</div>
+
+                            <div class="filed-name">{{dose?.createdAt |date:"MM/dd/yyyy"}}</div>
+                        </div>
+                        <div class="comm-grid">
+                            <div class="left-heading">
+                                Manufacturer:</div>
+
+                            <div class="filed-name">{{dose?.manufacturer}} </div>
+                        </div>
+                        <div class="comm-grid">
+                            <div class="left-heading"> Lot number :</div>
+
+                            <div class="filed-name">{{dose?.lot}}</div>
+                        </div>
+                        <div class="comm-grid">
+                            <div class="left-heading">Healthcare professional:</div>
+
+                            <div class="filed-name">
+                                <!-- {{dose?.clinicInfo.clinicId}}/{{dose?.clinicInfo.name}} -->
+                                {{dose?.administrationName}}
+                            </div>
+                        </div>
+
+                    </div>
+                    <hr>
+                </ng-container>
+
+                <!-- <ng-container *ngIf="doses.length == 0">
+                    <div class="col-12">
+                        <span class="heading-main" *ngIf="isLoading">
+                            <ngx-skeleton-loader count="1" animation="progress" [theme]="{ 
+                            'border-radius': '5px',
+                            height:'16px',
+                            width: '25%',                        
+                            border: '1px solid white'
+                          }"></ngx-skeleton-loader>
+                        </span>
+                        <span class="heading-main" *ngIf="!isLoading">COVID-19 Vaccination Record Card</span>
+                        <div class="text-center">
+                            <div class="img-main-inner">
+                                <ngx-skeleton-loader *ngIf="isLoading" count="1" animation="progress" [theme]="{ 
+                                    'border-radius': '5px',
+                                    height:'299px',
+                                    width: '275px',                        
+                                    border: '1px solid white'
+                                  }"></ngx-skeleton-loader>
+                                <img class="inner-img-main" *ngIf="!isLoading" src="assets/images/Vaccsynk.svg">
+                            </div>
+                            <span class="heading-main-inner" *ngIf="isLoading">
+                                <ngx-skeleton-loader count="1" animation="progress" [theme]="{ 
+                                    'border-radius': '5px',
+                                    height:'16px',
+                                    width: '170px',                        
+                                    border: '1px solid white'
+                                  }"></ngx-skeleton-loader>
+                            </span>
+                            <span class="heading-main-inner" *ngIf="!isLoading">No record card found</span>
+
+                        </div>
+                    </div>
+                </ng-container> -->
+
+            </section>
+
+
+        </div>
+
+    </div>
+</ng-container>
+
+<div *ngIf="isLoading">
+    <div class="empty-box" style="height: 100vh; width: 100%;"></div>
+</div>
+
+<ngx-ui-loader [loaderId]="'can-schedule-loader'"></ngx-ui-loader>

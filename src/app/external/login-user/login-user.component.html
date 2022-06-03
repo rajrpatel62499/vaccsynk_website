@@ -1,0 +1,59 @@
+<div class="register-main-area">
+    <div class="left-col">
+        <div class="logo-login" [routerLink]="[AppRoutes.ROOT]">
+            <img src="../../../assets/images/logo.svg" alt="logo" title="logo">
+        </div>
+        <h1 class="heading">
+           <span> Welcome!</span> Now, immunization made convenient and reliable with Vaccsynk’s one-stop vaccination management platform.
+        </h1>
+        <img src="../../../assets/images/Login-pic.svg" title="illustration-vector" alt="vector" class="ilu-vector">
+    </div>
+    <div class="righ-col">
+        <div class="first-row-for-ask">Don’t have an account ? <a [routerLink]="[ AppRoutes.ROOT, AppRoutes.REGISTER]"title="login">Register </a></div>
+        <div class="main-login-area-div">
+            <div class="login-text">Hello! Welcome back</div>
+            <div class="form-login-main">
+                <form [formGroup]="loginForm" class="f-login-main">
+                    
+                    <div class="comman-filed mobile-num">
+                        <input OnlyNumeric type="text" 
+                        minlength="10"
+                        maxlength="10"
+                        formControlName="mobile" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.mobile?.errors }" placeholder="Mobile Number"/>
+                        <div *ngIf="submitted && f.mobile.errors" class="invalid-feedback">
+                            <div *ngIf="f.mobile.errors.required"> Number is required</div>
+                            <div *ngIf="f.mobile.errors.maxlength">Mobile number should be {{f.mobile.errors.maxlength.requiredLength}} digit</div>
+                            <div *ngIf="f.mobile.errors.minlength">Mobile number should be {{f.mobile.errors.minlength.requiredLength}} digit</div>
+                        </div>
+                    </div>
+                    <div class="comman-filed password-main">
+                        <input (keyup.enter)="onSubmit()" type="text"  formControlName="password" class="form-control" maxlength="12" 
+                        [ngClass]="{ 'is-invalid': submitted && f.password?.errors }" placeholder="Password" [type]="hide ? 'password' : 'text'"/>
+                        <button mat-icon-button matSuffix  [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                            <img (click)="hide = !hide" src="../../../assets/images/eye-icon.svg" title="eye-icon">
+                        </button>
+                        <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                            <div *ngIf="f.password.errors.required">Password is required</div>
+                            <div *ngIf="f.password.errors.minlength">Password must be at least 6 characters</div>
+                        </div>
+                      
+                    </div>
+                    <button 
+                    [disabled]="isLoading"
+                    (click)="onSubmit()" class="custom-btn register-btn">
+                    <i class="fa" [ngClass]="{'fa-spin fa-spinner': isLoading, 'fa-sign-in': !isLoading}"></i>
+                        Login
+                    </button>
+
+                </form>
+                <button class="forgot-password-btn" [routerLink]="[ AppRoutes.ROOT, AppRoutes.FORGOT_PASS]">Forgot password ?</button>
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+
+</div>

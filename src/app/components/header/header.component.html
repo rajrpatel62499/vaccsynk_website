@@ -1,0 +1,146 @@
+
+
+<div class="header-main-area">
+    <div class="header-wrapper">
+        <div class="left-col">
+            <div class="logo-div">
+                <a title="Vaccsynk">
+                    <img src="../../../assets/images/logo.svg" alt="logo" title="logo" [routerLink]="['appointment']">
+                </a>
+            </div>
+            <ng-container *ngIf="_auth.loggedIn(); else navGroups">
+                <div class="main-tabs-for-header after-login-patient-headermain">
+                    <!-- {{(http.canScheduleStatus$|async) ? 'COVID-19 Conscent Form' : 'Feedback Form'}}  -->
+                    <!-- <mat-tab-group [disableRipple]="true" [selectedIndex]="1" (selectedTabChange)="yourFn($event)">
+                        <mat-tab >
+                            <ng-template mat-tab-label>
+                                <img src="assets/images/form.svg">
+                                <span>{{(http.canScheduleStatus$|async) ? 'COVID-19 Conscent Form' : 'Feedback Form'}}</span>
+                            </ng-template>
+                        </mat-tab>
+                        <mat-tab label="Appointments/Remainder">
+                            <ng-template mat-tab-label>
+                                <img src="assets/images/reminder.svg">
+                                <span>Appointments/Remainder</span>
+                            </ng-template>
+                        </mat-tab>
+                        <mat-tab label="History">
+                            <ng-template mat-tab-label>
+                                <img src="assets/images/history.svg">
+                                <span>History</span>
+                            </ng-template>    
+                        </mat-tab>
+                        <mat-tab label="Notifications">
+                            <ng-template mat-tab-label>
+                                <img src="assets/images/notification.svg">
+                                <span>Notifications</span>
+                            </ng-template>    
+                        </mat-tab>
+                    </mat-tab-group> -->
+                    <!-- <nav mat-tab-nav-bar >
+                        <a *ngFor="let link of navLinks" mat-tab-link
+                          #rla="routerLinkActive"
+                          [routerLink]="link.path"
+                          [matRippleDisabled]="disabled"
+                          routerLinkActive="active">
+
+                          <img [src]="link.img">
+
+                          {{link.label}}
+                        </a>
+                      </nav> -->
+                </div>
+               
+            </ng-container>
+            <ng-template #navGroups>
+                <div class="navigation-div">
+
+                    <button type="button" class="navbar-toggle collapsed" (click)="isCollapsed = !isCollapsed" aria-expanded="false">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <nav class="inner-wrapper collapse navbar-collapse" [collapse]=isCollapsed>
+                        <ul>
+                            <li><a  (click)="scrollTo(sids.HOME)" title="Home" class="header-links active">Home</a></li>
+                            <li><a  (click)="scrollTo(sids.FEATURES)" title="Features" class="header-links" >Features</a></li>
+                            <li><a  (click)="scrollTo(sids.HOW_IT_WORKS)" title="How it’s works" class="header-links">How it works</a></li>
+                            <li><a  (click)="scrollTo(sids.ABOUT_US)" title="About us" class="header-links">About us</a></li>
+                        </ul>
+                    </nav>
+                </div>
+            </ng-template>
+        </div>
+        
+        <ng-container *ngIf="_auth.loggedIn(); else notLoginBlock">
+            <div class="right-col-combo">
+                <!-- <div class="mail-icon-main"><img src="../../../assets/images/mail-icon.svg" alt="mail" title="mail"></div> -->
+                <div class="mail-icon-main">
+                    <div class="for-links-after-login">
+                        <a *ngFor="let link of navLinks"
+                            #rla="routerLinkActive"
+                            [routerLink]="link.path"
+                            routerLinkActive="active">
+
+                            <img [src]="link.img" width="21px">
+                            
+                        </a>
+                    </div>
+
+                    <img src="../../../assets/images/logout.svg" alt="mail" title="mail">
+                    <span class="profile-user" (click)="_auth.logoutUser()">Log out
+                    </span>
+                </div>
+                <div class="img-profile-main">
+                    <!-- <img src="../../../assets/images/speaker-3-v2 1.png" alt="profile-pic" title="profile-pic"/> -->
+                    <ng-container *ngIf="userProfileData?.name">
+                        <ngx-avatar bgColor="#14649c" [routerLink]="[ AppRoutes.ROOT, AppRoutes.PROFILE]" size="45" [name]="userProfileData?.name.charAt(0).toUpperCase()   "></ngx-avatar>
+                    </ng-container>
+                    <div class="gravatar"  style="outline: none;">
+                        <ngx-skeleton-loader  style="outline: none;" *ngIf="isLoading" appearance="circle" [theme]="{ width: '50px', height: '50px' }"></ngx-skeleton-loader>
+                    </div>
+                </div>
+            </div>          
+        </ng-container>
+
+        <ng-template #notLoginBlock>
+            <div class="btn-group" dropdown>
+                <button id="button-disabled-item" dropdownToggle type="button" class="btn  dropdown-toggle"
+                        aria-controls="dropdown-disabled-item">
+                        Registrations <span class="caret"></span>
+                </button>
+                <ul id="dropdown-basic" *dropdownMenu class="dropdown-menu"
+                    role="menu"  aria-labelledby="button-basic">
+                  <li role="menuitem">
+                      <a class="dropdown-item" [routerLink]="[ AppRoutes.ROOT, AppRoutes.REGISTER]"><img src="../../../assets/images/patient-icon.svg" alt="icon" title="icon" /> Patient</a>
+                    </li>
+                  <li role="menuitem">
+                      <a class="dropdown-item"  [href]="env.PharmacyPortalUrl"><img src="../../../assets/images/medicine-icon.svg" alt="icon" title="icon">Pharmacy</a>
+                  </li>
+                  <li role="menuitem">
+                      <a class="dropdown-item"[href]="env.FacilityPortalUrl"><img src="../../../assets/images/office-center-icon.svg" alt="icon" title="ioc"> Facilities/Companies</a>
+                  </li>
+                </ul>
+              </div>
+          
+            <!-- <div class="btn-group" dropdown>
+                <button id="button-basic" dropdownToggle type="button" class="btn  dropdown-toggle"
+                        aria-controls="dropdown-basic">
+                        Registerations <span class="caret"></span>
+                </button>
+                <ul id="dropdown-basic" *dropdownMenu class="dropdown-menu"
+                    role="menu" aria-labelledby="button-basic">
+                  <li role="menuitem"><a class="dropdown-item" [routerLink]="[ AppRoutes.ROOT, AppRoutes.REGISTER]">User</a></li>
+                  <li role="menuitem"><a class="dropdown-item" href="https://pharmacy.vaccsynk.com/">Center</a></li>
+                  <li role="menuitem"><a class="dropdown-item" href="#">Facilities</a></li>
+                </ul>
+              </div> -->
+            <!-- <div class="right-col"> 
+                <button class="btn-comman register-btn" [routerLink]="[ AppRoutes.ROOT, AppRoutes.REGISTER]">Register User</button>
+                <button class="btn-comman" [routerLink]="[ AppRoutes.ROOT, AppRoutes.REGISTER_CENTER]">Register Center</button>
+            </div> -->
+        </ng-template>
+ 
+    </div>
+</div>

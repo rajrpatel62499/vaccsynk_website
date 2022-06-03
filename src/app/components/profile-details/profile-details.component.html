@@ -1,0 +1,97 @@
+<div class="custom-container registration-form-main user-registration-second-form-main">
+    <!-- =============heading========================== -->
+    <h1 class="small-heading">Profile</h1>
+    <div class="inner-wrapper-main">
+
+        <div class="first-row-profile">
+                <div class="left-col">
+                    <div class="profile-pic">
+                        <!-- <img src="../../../assets/images/dummy-pic.svg" class="person-pic" alt="img" title="img"> -->
+                        <ngx-avatar  size="65" bgColor="#14649c" [name]="userProfileData?.name"></ngx-avatar>
+                        <div class="gravatar">
+                            <ngx-skeleton-loader  *ngIf="isLoading" appearance="circle" [theme]="{ width: '65px', height: '65px' }"></ngx-skeleton-loader>
+                          </div>
+                       
+                        <!-- <span class="upbtn"><img src="../../../assets/images/white-cam.svg" alt="white-cam" title="white-cam"></span> -->
+                        <input type="file"/>
+                    </div>
+                    <div class="rightname">
+                        <div class="name">{{userProfileData?.name ? userProfileData.name : 'User Name'}}</div>
+                        <div class="emailid">{{userProfileData?.email ? userProfileData.email : 'Email Id'}}</div>
+                    </div>
+
+                </div>
+                <div class="edit-btn">
+                    <img style="cursor: pointer;" (click)="userProfileData ?  editProfile() : ''" src="../../../assets/images/edit.svg" alt="edit" title="edit">
+                </div>
+
+        </div>
+
+        <!-- ------------input=grid-main==================== -->
+        <div class="grid-for-input-main">
+            <div class="inner-grid-main">
+                <input disabled  [value]="userProfileData?.name">
+            </div>
+            <!-- <div class="inner-grid-main">
+                <input disabled class="disabled" placeholder="Doe">
+            </div> -->
+            <div class="inner-grid-main phone-grid">
+                <input disabled [value]="userProfileData?.mobile ? userProfileData.mobile : ''"  placeholder="Mobile number" [value]="userProfileData?.mobile">
+            </div>
+            <div class="inner-grid-main emailid-grid">
+                <input disabled [value]="userProfileData?.email ? userProfileData.email : '' " type="text"  placeholder="Email Id"/>
+            </div>
+            <div class="inner-grid-main date-picker-grid">
+                <input disabled 
+                [value]="userProfileData?.birthdate ? (userProfileData.birthdate | date:'dd-MM-yyyy') : '' " 
+                placeholder="Birth Date">
+            </div>
+            <div class="inner-grid-main">
+                <input disabled [value]="userProfileData?.gender ? userProfileData.gender: ''"  placeholder="Gender">
+            </div>
+            <div class="inner-grid-main ">
+                <input disabled [value]="userProfileData?.address ? userProfileData.address : '' " type="text"  placeholder="Address"/>
+            </div>
+            <div class="inner-grid-main ">
+                <input disabled [value]="userProfileData?.city ? userProfileData.city : ''" type="text"  placeholder="City"/>
+            </div>
+            <div class="inner-grid-main">
+                <input disabled [value]="userProfileData?.state ? userProfileData.state : ''" type="text"  placeholder="State"/>
+            </div>
+            <div class="inner-grid-main">
+                <input disabled [value]="userProfileData?.zip ? userProfileData.zip : ''" type="text"  placeholder="Zip"/>
+            </div>
+   
+            <!-- <div class="inner-grid-main">
+                <input type="text"  placeholder="MA"/>
+            </div> -->
+            <!-- <div class="inner-grid-main">
+                <input disabled [value]="userProfileData?.NPINo ? userProfileData.NPINo : '' " type="text"  placeholder="02109"/>
+            </div>
+            <div class="inner-grid-main">
+                <input disabled [value]="userProfileData?.pharmacistName ? userProfileData.pharmacistName : '' " type="text"  placeholder="Primary Care Provider (PCP) Name"/>
+            </div>
+            <div class="inner-grid-main">
+                <input disabled [value]="userProfileData?.pharmacistNpiNumber ? userProfileData.pharmacistNpiNumber : '' " type="text"  placeholder="PCP Phone Number"/>
+            </div>
+            <div class="inner-grid-main">
+                <input disabled [value]="userProfileData?.faxNo ? userProfileData.faxNo : '' " type="text"  placeholder="PCP Fax Number"/>
+            </div>
+            <div class="inner-grid-main">
+                <input disabled [value]="userProfileData?.address ? userProfileData.address : '' " type="text"  placeholder="PCP Address"/>
+            </div> -->
+  
+
+        </div>
+
+      
+        <!-- <div class="last-button-row">
+            <button class="back-btn">Cancel</button>
+            <button class="next-btn" [routerLink]="[ AppRoutes.ROOT  , AppRoutes.PROFILE]">Save</button>
+        </div> -->
+
+   
+    </div>
+
+
+</div>

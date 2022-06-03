@@ -1,0 +1,207 @@
+
+// ----Media query mixin-----------//
+@mixin min-mq($min-screen-size) {
+    @media (min-width: $min-screen-size +"px") {
+    @content;
+    }
+    }
+    
+    @mixin max-mq($max-screen-size) {
+    @media (max-width: $max-screen-size +"px") {
+    @content;
+    }
+    }
+    
+    // ----------------------------For Orientation-----------------------//
+    @mixin landscape-orientation($max-screen-size,
+    $orientation) {
+    @media (max-width: $max-screen-size +"px") and (orientation: $orientation) {
+    @content;
+    }
+    }
+    
+    @mixin btw-mq($min-screen-size,
+    $max-screen-size,
+    $pixel-ratio,
+    $orientation) {
+    @media only screen and (min-width: $min-screen-size +"px") and (max-width: $max-screen-size +"px") and (-webkit-min-device-pixel-ratio: $pixel-ratio) and (orientation: $orientation) {
+    @content;
+    }
+    }   
+
+.select-heading-main {
+    display: flex;
+    align-items: center;
+    padding: 20px;
+    border-bottom: 1px solid #E5E5E5;
+    margin-bottom: 20px;
+    margin-top: -25px;
+    margin-left: -25px;
+    margin-right: -25px;
+    .close-btn {
+        margin-right: 20px;
+        cursor: pointer;
+        margin-left: 10px;
+    }
+    .heading-title {
+        font-size: 15px;
+        line-height: 25px;
+        color: #333333;
+    }
+}
+
+.grid-for-input-main {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-column-gap: 40px;
+    grid-row-gap: 20px;
+    margin-bottom: 20px;
+    margin-top: 40px;
+    width: 100%;
+    @include max-mq(991){
+        grid-template-columns: repeat(2, 1fr);
+        grid-column-gap: 20px;
+    }
+    .inner-grid-main{
+        input {
+            width: 100%;
+            padding: 18px 15px;
+            border-radius: 5px;
+            border: 1px solid #e5e5e5;
+            outline: none !important;
+            font-weight: inherit;
+        }
+    } 
+
+    input.main.ng-untouched.ng-pristine.ng-valid {
+        background: #fafafa;
+    }
+    .show-error {
+        // position: absolute;
+        // left: 40%;
+        // right: 0;
+        // bottom: -21px;
+        // @include max-mq(991){
+        //     left: 30%;
+        // }
+        // @include max-mq(567){
+        //     left: 0;
+        // }
+    
+        small {
+            color: red;
+            display: block;
+
+        }
+    }
+    .date-picker-grid{
+        position: relative;
+        &::before{
+            position: absolute;
+            content: '';
+            background: url(../../../assets/images/date-picker-main.svg) no-repeat;
+            background-size: 18px;
+            width: 20px;
+            height: 19px;
+            top: 0px;
+            bottom: 0px;
+            right: 15px;
+            display: none;
+            margin: auto;
+        }
+    }
+    .phone-grid{
+        position: relative;
+        &::before{
+            position: absolute;
+            content: '';
+            background: url(../../../assets/images/password-icon.svg) no-repeat;
+            background-size: 15px;
+            width: 20px;
+            height: 29px;
+            right:15px;
+            top: 0px;
+            bottom: 0px;
+            margin: auto;
+            
+        }
+    }
+    .emailid-grid{
+        position: relative;
+        &::before{
+            position: absolute;
+            content: '';
+            background: url(../../../assets/images/email-icon.svg) no-repeat;
+            background-size: 18px;
+            width: 24px;
+            height: 15px;
+            right: 15px;
+            top: 2px;
+            bottom: 0px;
+            margin: auto;
+            
+        }
+    }
+}
+
+
+.last-button-row {
+    text-align: right;
+    margin-top: 40px;
+
+    button{
+        padding: 10px 40px;
+        font-size: 15px;
+        background: none;
+        border: 1px solid #14649C;
+        box-sizing: border-box;
+        border-radius: 5px;
+    }
+    button.back-btn {
+        margin-right: 10px;
+        color: #14649C;
+    }
+    button.next-btn {
+        background: #14649c !important;
+        color: #ffff;
+    }
+}
+
+
+.gender-btn-main{
+
+    .btn-group{
+        width: 100%;
+        button.btn{
+            width: 100%;
+            padding: 17px 15px;
+            border-radius: 5px;
+            border: 1px solid #e5e5e5 !important;
+            outline: none !important;
+            background: #fff;
+            color: #000;
+            text-align: left;
+            box-shadow: none !important;
+            &::after{
+                position: absolute;
+                right: 13px;
+                top: 0;
+                bottom: 0;
+                margin: auto;
+            }
+        }
+        .dropdown-menu {
+            min-width: 100%;
+            max-width: 100% !important;
+            box-shadow: 0px 8px 10px #ccc;
+            border: none;
+        }
+    }
+}
+input[readonly] {
+    background-color: transparent;
+}
+
+.is-invalid {
+    border: 1px solid red !important;
+}

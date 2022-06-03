@@ -1,0 +1,362 @@
+// ----Media query mixin-----------//
+@mixin min-mq($min-screen-size) {
+    @media (min-width: $min-screen-size +"px") {
+    @content;
+    }
+    }
+    
+    @mixin max-mq($max-screen-size) {
+    @media (max-width: $max-screen-size +"px") {
+    @content;
+    }
+    }
+    
+    // ----------------------------For Orientation-----------------------//
+    @mixin landscape-orientation($max-screen-size,
+    $orientation) {
+    @media (max-width: $max-screen-size +"px") and (orientation: $orientation) {
+    @content;
+    }
+    }
+    
+    @mixin btw-mq($min-screen-size,
+    $max-screen-size,
+    $pixel-ratio,
+    $orientation) {
+    @media only screen and (min-width: $min-screen-size +"px") and (max-width: $max-screen-size +"px") and (-webkit-min-device-pixel-ratio: $pixel-ratio) and (orientation: $orientation) {
+    @content;
+    }
+    }    
+// ------------END of Media Screen Mixing--------------//
+.small-heading {
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 25px;
+    color: #14649C;
+    border-bottom: 1px solid #E5E5E5;
+    padding-bottom: 20px;
+    margin-bottom: 30px;
+    padding: 20px 31px;
+}
+
+.inner-wrapper-main {
+    padding: 0px 30px;
+    
+}
+
+.user-registration-second-form-main {
+    margin-top: 50px;
+    margin-bottom: 110px;
+}
+
+
+.underline-label {
+    display: inline-block;
+    margin-bottom: 20px;
+    width: 2308px;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 25px;
+    text-decoration: underline;
+    color: #14649C;
+}
+
+.grid-system-list-main {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-column-gap: 20px;
+    grid-row-gap: 20px;
+    max-height: 630px;
+    overflow-y: auto;
+    margin-bottom: 50px;
+    @include max-mq(991){
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .inner-grid {
+        padding: 15px;
+        border: 1px solid #CFD0D1;
+        border-radius: 10px;
+        display: flex;
+        .left-div {
+            width: 62px;
+            height: 62px;
+            background: #14649C;
+            margin-right: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 100%;
+            color: #fff;
+            font-weight: 500;
+            font-size: 25px;
+            line-height: 31px;
+        }
+        .right-col{
+            width: 85%;
+            .first-row {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                margin-bottom: 20px;
+                margin-left: 15px;
+                .pharmacy-name {
+                    font-weight: 500;
+                    font-size: 16px;
+                    line-height: 20px;
+                    color: #333;
+                }
+            }
+            .address-img-main {
+                margin-bottom: 10px;
+                font-size: 14px;
+                line-height: 17px;
+                letter-spacing: 0.02em;
+                margin-left: 15px;            
+                width: 227px; 
+            }
+                
+            
+            .time-main{
+                font-size: 14px;
+                line-height: 17px;
+                letter-spacing: 0.02em;
+            }
+        }
+    }
+}
+
+.view-all-btn {
+    margin-top: 30px;
+    text-align: right;
+    margin-bottom: 30px;
+    padding-bottom: 30px;
+    border-bottom: 1px solid #e5e5e5;
+    button.btn {
+        box-shadow: none !important;
+        background: none !important;
+        text-decoration: underline;
+        color: #14649c;
+        font-size: 17px;
+        line-height: 20px;
+    }
+}
+
+.heading-row {
+    display: flex;
+    align-items: center;
+    .underline-label {
+        margin-right: 20px;
+        margin-bottom: 0 !important;
+    }
+    .normal-date {
+        font-size: 20px;
+        line-height: 25px;
+        letter-spacing: 0.02em;
+        color: #14649c;
+    }
+}
+
+.datepicker-row-main {
+    margin: 30px 0px;
+    display: flex;
+    align-items: center;
+    .label-main {
+        font-size: 15px;
+        line-height: 25px;
+        color: #333333;
+        margin-right: 20px
+    }
+    .date-picker-main {
+        width: 20%;
+        position: relative;
+        &::before{
+            position: absolute;
+            content: '';
+            background: url(../../../assets/images/date-picker-main.svg) no-repeat;
+            background-size: 18px;
+            width: 20px;
+            height: 19px;
+            top: 0px;
+            bottom: 0px;
+            display: none;
+            right: 10px;
+            margin: auto;
+        }
+    }
+}
+
+.time-heading{
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 20px;
+    letter-spacing: 0.02em;
+    text-decoration-line: underline;
+    color: #333333;
+    margin-bottom: 20px;
+}
+
+.time-slot-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    grid-column-gap: 10px;
+    grid-row-gap: 10px;
+    margin: 30px 0px;
+    @include max-mq(1500){
+        grid-template-columns: repeat(6, 1fr);
+    }
+    @include max-mq(1200){
+        grid-template-columns: repeat(5, 1fr);
+    }
+    @include max-mq(991){
+        grid-template-columns: repeat(3, 1fr);
+    }
+    .inner-grid-system {
+        background: #fff;
+        border: 1px solid #CFD0D1;
+        border-radius: 5px;
+        padding: 15px 30px;
+        text-align: center;
+        color: #333;
+        cursor: pointer;
+        position: relative;
+    }
+    .not-avialble{
+        background: #F2F2F2;
+    }
+    .available{
+        background: #14649c;
+        border: 1px solid #14649C;
+        color: #fff;
+    }
+    .selectedSlot{
+        background: #14649c;
+        border: 1px solid #14649C;
+        color: #fff;
+    }
+}
+
+
+
+.last-button-row {
+    text-align: right;
+    margin-top: 40px;
+
+    button{
+        padding: 10px 40px;
+        font-size: 15px;
+        background: none;
+        border: 1px solid #14649C;
+        box-sizing: border-box;
+        border-radius: 5px;
+    }
+    button.back-btn {
+        margin-right: 10px;
+        color: #14649C;
+    }
+    button.next-btn {
+        background: #14649c !important;
+        color: #ffff;
+    }
+}
+
+
+
+.main-filter {
+    display: flex;
+    justify-content: space-between;
+    padding: 16px 0px;
+    input.search-filter {
+        padding: 9px 41px;
+        font-size: 1rem;
+        line-height: 1.5;
+        color: #495057;
+        background-color: #fff;
+        background-clip: padding-box;
+        border: 1px solid #ced4da;
+        background: url(../../../assets/images/search-icon.svg)no-repeat;
+        background-position: 12px 12px;
+        border-radius: .25rem;
+        transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+        outline: none;
+    }
+    
+}
+.drop-main {
+    padding: 24px 12px;
+    margin-left: -6px;
+}
+
+input[readonly] {
+    background-color: transparent;
+}
+
+button.btn.btn-primary.dropdown-toggle {
+    background: #FFFFFF;
+    border: 1px solid #CFD0D1;
+    box-sizing: border-box;
+    border-radius: 5px;
+    padding: 6px 30px;  
+    color: #848484;
+    outline: none !important;
+    text-align: left;
+}
+.main-dropdown {
+    display: flex;
+}
+
+label.open {
+    padding: 0px 20px;
+    position: relative;
+    top: 1px;
+}
+
+.inner-div{
+    display: flex;
+}
+label.main-label {
+    margin-left: 12px;
+}
+
+img.image {
+    width: 22px;
+    padding: 0px 1px;
+    margin-left: 21px;
+}
+
+label.select {
+    font-size: 15px;
+    line-height: 25px;
+    color: #333333;
+    margin-right: 20px;
+}
+
+ul#dropdown-animated {
+    width: 100%;
+    text-align: center;
+}
+
+.btn-group.dropdown-menu li a {
+    padding: 10px 20px;
+    font-size: 14px;
+    border-bottom: 1px solid #ccc;
+}
+
+button#button-basic::after {
+ display: none;   
+}
+
+span.remain-dos-badge {
+    position: absolute;
+    right: -5px;
+    top: -10px;
+    background: red;
+    color: #fff;
+    border-radius: 100%;
+    font-size: 11px;
+    width: 18px;
+    height: 18px;
+    display: inline-block;
+    font-weight: 600;
+
+}

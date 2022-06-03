@@ -1,0 +1,138 @@
+<div class="select-heading-main">
+    <div class="close-btn" (click)="cancel()">
+        <img src="../../../assets/images/close-icon.svg" alt="clsoe" title="close">
+    </div>
+    <div class="heading-title">Update Profile</div>
+
+</div>
+      <!-- ------------input=grid-main==================== -->
+      <form (ngSubmit)="updateProfile()" [formGroup]="userProfileForm" class="grid-for-input-main">
+        <div class="inner-grid-main">
+            <input type="text" placeholder="Name" formControlName="name" 
+            [ngClass]="{'is-invalid': (f.name.errors && (f.name.touched || submitted))}"
+            >
+            <div class="show-error" *ngIf="submitted && f.name.errors">
+                <small *ngIf="f.name.errors.required">Name is required</small>
+            </div>
+        </div>
+        <!-- <div class="inner-grid-main">
+            <input  class="" placeholder="Doe">
+        </div> -->
+        <div class="inner-grid-main phone-grid">
+            <input  formControlName='mobile'  type="text" placeholder="Mobile number" 
+            [ngClass]="{'is-invalid': (f.mobile.errors && (f.mobile.touched || submitted))}"
+            >
+            <!-- <div class="show-error" *ngIf="submitted && f.mobile.errors">
+                <small *ngIf="f.mobile.errors.required"> Mobile number is required</small>
+            </div> -->
+        </div>
+        <div class="inner-grid-main emailid-grid">
+       
+            <input formControlName="email"  readonly  type="text"  class="main"
+                 [ngClass]="{'is-invalid': (f.email.errors && (f.email.touched || submitted))}"
+            />
+            <!-- <div class="show-error" *ngIf="submitted && f.email.errors">
+                <small *ngIf="f.email.errors.required"> Email Id is required</small>
+                <small *ngIf="f.email.errors.required"> Please enter a valid email</small>
+            </div> -->
+        </div>
+        <div class="inner-grid-main date-picker-grid">
+            <input  
+            #birthdate
+            placeholder="MM/DD/YYYY"
+            bsDatepicker
+            readonly
+            [maxDate]="today"
+            (bsValueChange)="onDateChange(birthdate, 'birthdate')"
+            [bsConfig]="{ dateInputFormat: 'DD-MM-YYYY' }"
+            formControlName="birthdate" placeholder="Birth Date">
+        </div>
+        <div class="inner-grid-main gender-btn-main">
+            <!-- <input  formControlName='gender' type="text"  placeholder="Gender"> -->
+            <!-- <input id="button-basic" dropdownToggle type="text" class="btn btn-primary dropdown-toggle"
+                        aria-controls="dropdown-basic"/> -->
+            <!-- <div class="show-error" *ngIf="submitted && f.gender.errors">
+                <small *ngIf="f.gender.errors.required"> Gender is required</small>
+            </div> -->
+
+            <div class="btn-group" dropdown>
+                <button id="button-basic" dropdownToggle type="button" class="btn btn-primary dropdown-toggle"
+                        aria-controls="dropdown-basic">
+                  {{f.gender.value ? f.gender.value : 'Gender'}}<span class="caret"></span>
+                </button>
+                <ul id="dropdown-basic" *dropdownMenu class="dropdown-menu"
+                    role="menu" aria-labelledby="button-basic">
+                  <li role="menuitem"><a class="dropdown-item" (click)="f.gender.setValue('Male') ">Male</a></li>
+                  <li role="menuitem"><a class="dropdown-item" (click)="f.gender.setValue('Female') ">Female</a></li>
+                  <li role="menuitem"><a class="dropdown-item" (click)="f.gender.setValue('Other') ">Other</a></li>
+                </ul>
+              </div>
+             
+        </div>
+        <div class="inner-grid-main ">
+            <input placeholder=""
+            #placesRef="ngx-places" 
+            ngx-google-places-autocomplete
+            (onAddressChange)="handleAddressChange($event,'address')"
+            formControlName='address'  type="text"  placeholder="Address"/>
+            <!-- <div class="show-error" *ngIf="submitted && f.address.errors">
+                <small *ngIf="f.address.errors.required"> Address is required</small>
+            </div> -->
+        </div>
+        <div class="inner-grid-main ">
+            <input  formControlName='city'  type="text"  placeholder="City"
+            [ngClass]="{'is-invalid': (f.city.errors && (f.city.touched || submitted))}"
+            />
+            <!-- <div class="show-error" *ngIf="submitted && f.city.errors">
+                <small *ngIf="f.city.errors.required"> City is required</small>
+            </div> -->
+        </div>
+        <div class="inner-grid-main">
+            <input  formControlName='state'  type="text"  placeholder="State"
+            [ngClass]="{'is-invalid': (f.state.errors && (f.state.touched || submitted))}"
+            />
+            <!-- <div class="show-error" *ngIf="submitted && f.state.errors">
+                <small *ngIf="f.state.errors.required"> State is required</small>
+            </div> -->
+        </div>
+        <div class="inner-grid-main">
+            <input OnlyNumeric formControlName='zip'  type="text"  placeholder="Zip"
+            [ngClass]="{'is-invalid': (f.zip.errors && (f.zip.touched || submitted))}"
+            />
+            <!-- <div class="show-error" *ngIf="submitted && f.zip.errors">
+                <small *ngIf="f.zip.errors.required"> Zip is required</small>
+            </div> -->
+        </div>
+
+        <!-- <div class="inner-grid-main">
+            <input type="text"  placeholder="MA"/>
+        </div> -->
+        <!-- <div class="inner-grid-main">
+            <input  formControlName='NPINo'  type="text"  placeholder="NPI No"/>
+        </div>
+        <div class="inner-grid-main">
+            <input  formControlName='pharmacistName'  type="text"  placeholder="Primary Care Provider (PCP) Name"/>
+        </div>
+        <div class="inner-grid-main">
+            <input  formControlName='pharmacistNpiNumber'  type="text"  placeholder="PCP Phone Number"/>
+        </div>
+        <div class="inner-grid-main">
+            <input  formControlName='faxNo'   type="text"  placeholder="PCP Fax Number"/>
+        </div>
+        <div class="inner-grid-main">
+            <input  formControlName='PCPAddress'   type="text"  placeholder="PCP Address"/>
+        </div> -->
+
+
+    </form>
+
+    <div class="last-button-row">
+        <button class="back-btn" (click)="cancel()">Cancel</button>
+        <button class="next-btn" 
+            type="submit"
+            [disabled]="isLoading"
+            (click)="updateProfile()">
+            <i class="fa"  [ngClass]="{ 'fa-spin fa-spinner': isLoading}" ></i>
+            Update
+        </button>
+    </div>

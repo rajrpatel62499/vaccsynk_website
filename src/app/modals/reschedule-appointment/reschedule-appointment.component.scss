@@ -1,0 +1,66 @@
+.main-popup-clas {
+    text-align: center;
+    padding: 30px 0px;
+    position: relative;
+    .img-class {
+        margin-bottom: 30px;
+    }
+    .verify-heading {
+        // font-weight: 500;
+        font-size: 20px;
+        line-height: 25px;
+        margin-bottom: 40px;
+    }
+    p{
+        font-size: 14px;
+        line-height: 20px;
+        margin-bottom: 30px;
+    }
+    .email-id-main {
+        margin-bottom: 30px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        label.email {
+            margin-bottom: 0;
+            margin-right: 15px;
+            font-size: 14px;
+            line-height: 20px;
+        }
+        span{
+            color: #14649C;
+            font-size: 14px;
+        }
+        
+    }
+    button.cross-btn {
+        position: absolute;
+        top: -7px;
+        left: -4px;
+        background: none;
+        border: none;
+        padding: 0;
+        cursor: pointer;
+        outline: none !important;
+    }
+    
+}
+
+.cancel-btn {
+    padding: 8px 30px;
+    margin-right: 20px;
+    border: 1px solid #14649C;
+    border-radius: 5px;
+    background: #fff;
+    color: #14649c;
+    cursor: pointer;
+}
+
+.sch-btn {
+    padding: 8px 30px;
+    border: 1px solid #14649C;
+    border-radius: 5px;
+    background: #14649c;
+    color: #fff;
+    cursor: pointer;
+}

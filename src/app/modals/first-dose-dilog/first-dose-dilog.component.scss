@@ -1,0 +1,111 @@
+.first-row-main {
+    display: flex;
+    padding: 13px 0px;
+    align-items: center;
+    .text-inner-main {
+        // font-weight: 600;
+        margin-left: 21px;
+        font-size: 22px;
+        font-weight: 500;
+   
+    }
+}
+
+.main-form-wrapper {
+    padding: 21px 14px;
+    input.text-main {
+        width: 100%;
+        border: 1px solid #CFD0D1;
+        border-radius: 5px;
+        padding: 10px 18px;
+        outline: none;
+    }
+    .first-col {
+        width: 201px;
+        font-size: 13px;
+        font-weight: 400;
+    
+    }
+    .second-col {
+        padding: 0px 15px;
+        width: 70%;
+    }
+}
+button.next-btn {
+    padding: 10px 40px;
+    font-size: 15px;
+    background: #14649C;
+    border: 1px solid #14649C;
+    color: #fff;
+    box-sizing: border-box;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    margin: auto!important;
+}
+
+input.form-control.ng-untouched.ng-pristine.ng-invalid {
+    width: 100%;
+    border: 1px solid #CFD0D1;
+    border-radius: 5px;
+    padding: 10px 18px;
+    outline: none;
+}
+
+span.mat-radio-label-content {
+    padding: 0px 29px;
+    font-weight: 100;
+}
+
+.is-invalid {
+    border: 1px solid red !important;
+}
+input[type=radio].is-invalid-radio + label::before {
+    outline: red;
+    border-color: red !important;
+}
+label::before + input[type=radio].is-invalid-radio {
+    outline: red;
+    border-color: red !important;
+}
+.show-error {
+    display: none;
+}
+
+.first-col-inner {
+    display: flex;
+    justify-content: center;
+    margin: auto;
+}
+
+
+.unstyled::-webkit-inner-spin-button,
+.unstyled::-webkit-calendar-picker-indicator {
+    display           : none;
+    -webkit-appearance: none;
+}
+
+
+.seperator {
+    border: 1px solid #E5E5E5;
+}
+
+.is-invalid {
+    border: 1px solid red !important;
+}
+input[type=radio].is-invalid-radio + label::before {
+    outline: red;
+    border-color: red !important;
+}
+label::before + input[type=radio].is-invalid-radio {
+    outline: red;
+    border-color: red !important;
+}
+.show-error {
+    display: none;
+}
+
+input.form-control {
+    padding: 10px 15px !important;
+    border-radius: 5px !important;
+}

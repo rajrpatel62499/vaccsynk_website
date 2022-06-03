@@ -1,0 +1,370 @@
+<div class="custom-container registration-form-main">
+    <!-- =============heading========================== -->
+    <div class="feedback-img-main">
+        <img src="../../../assets/images/feedback.svg">
+    </div>
+    <div class="feedback-text-main">
+        We would love to have your feedback!
+    </div>
+   
+    <form [formGroup]="feedbackForm">
+        <div class="inner-wrapper-main">
+            <!-- <div class="alert-main">
+                <alert class="alert-main"  type="warning" [dismissible]="true" >Your appointement is already scheduled.</alert>
+            </div> -->
+           <span class="underline-label">Feedback Form </span>
+           <div class="form-heading">For vaccine recipients:</div>
+
+           <!-- First Radio -->
+        <div class="radio-row-main">
+        <div class="left-col-main">
+            <span>1.</span> Are you feeling sick today?
+        </div>
+        <div class="radio-btn-group-main right-col">
+            <div class="inner-grid-system">
+                <input  [ngClass]="{'is-invalid-radio' : (f.sick.errors && submitted )}"
+                 formControlName="sick" type="radio" id="yes11" value="Yes">
+                <label for="yes11">Yes</label>
+            </div>
+            <div class="inner-grid-system">
+                <input formControlName="sick" type="radio" id="no11" value="No">
+                <label for="no11">No</label>
+            </div>
+            <div class="inner-grid-system">
+                <input formControlName="sick" type="radio" id="dontknow11" value="dontknow">
+                <label for="dontknow11">Don’t Know</label>
+            </div>    
+            <!-- <div class="show-error" *ngIf="submitted && f.potentialContradiction.get('sick').errors">
+                <small *ngIf="f.potentialContradiction.get('sick').errors.required"> sick is required</small>
+            </div> -->
+        </div>
+
+        </div>
+
+         <!-- Second Radio -->
+
+      
+         <!-- Fourth Radio -->
+         <div class="radio-row-main">
+        <div class="left-col-main">
+            <span>2.</span> Have you ever had an allergic reaction to:
+            (This would include a severe allergic reaction [e.g., anaphylaxis] that required treatment with epinephrine or EpiPen® or that caused you to go to the hospital.
+            It would also include an allergic reaction that occurred within 4 hours that caused hives, swelling, or respiratory distress, including wheezing.)
+        </div>
+        <div></div>
+
+        </div>
+        <!-- -Fourth-row -->
+        <div class="radio-row-main">
+        <div class="left-col-main">
+            <span></span> A component of the COVID-19 vaccine, including polyethylene glycol (PEG), which is found in
+            some medications, such as laxatives and preparations for colonoscopy procedures
+        </div>
+        <div class="radio-btn-group-main right-col">
+            <div class="inner-grid-system">
+                <input
+                [ngClass]="{'is-invalid-radio' : (f.hadAllergyOfCovidVaccine.errors && submitted )}"
+                type="radio" id="yes34" formControlName="hadAllergyOfCovidVaccine" value="Yes">
+                <label for="yes34">Yes</label>
+            </div>
+            <div class="inner-grid-system">
+                <input type="radio" id="no34" formControlName="hadAllergyOfCovidVaccine" value="No">
+                <label for="no34">No</label>
+            </div>
+            <div class="inner-grid-system">
+                <input type="radio" id="dontknow34" formControlName="hadAllergyOfCovidVaccine" value="dontknow">
+                <label for="dontknow34">Don’t Know</label>
+            </div>  
+            <!-- <div class="show-error" *ngIf="submitted && f.potentialContradiction.get('hadAllergyAfterDose').errors">
+                <small *ngIf="f.potentialContradiction.get('hadAllergyAfterDose').errors.required"> hadAllergyAfterDose is required</small>
+            </div>     -->
+        </div>
+
+        </div>
+        <!-- -Fourth-row -->
+        <div class="radio-row-main">
+        <div class="left-col-main">
+            <span></span> Polysorbate
+        </div>
+        <div class="radio-btn-group-main right-col">
+            <div class="inner-grid-system">
+                <input 
+                [ngClass]="{'is-invalid-radio' : (f.hadAllergyOfPolysorbate.errors && submitted )}"
+                type="radio" id="yes35" formControlName="hadAllergyOfPolysorbate" value="Yes">
+                <label for="yes35">Yes</label>
+            </div>
+            <div class="inner-grid-system">
+                <input type="radio" id="no35" formControlName="hadAllergyOfPolysorbate" value="No">
+                <label for="no35">No</label>
+            </div>
+            <div class="inner-grid-system">
+                <input type="radio" id="dontknow35" formControlName="hadAllergyOfPolysorbate" value="dontknow">
+                <label for="dontknow35">Don’t Know</label>
+            </div>    
+            <!-- <div class="show-error" *ngIf="submitted && f.potentialContradiction.get('hadAllergyAfterOtherDoseOrInjectable').errors">
+                <small *ngIf="f.potentialContradiction.get('hadAllergyAfterOtherDoseOrInjectable').errors.required"> hadAllergyAfterOtherDoseOrInjectable is required</small>
+            </div>   -->
+        </div>
+        </div>
+        <!-- -Fourth-row -->
+        <div class="radio-row-main">
+        <div class="left-col-main">
+            <span></span> A previous dose of COVID-19 vaccine
+        </div>
+        <div class="radio-btn-group-main right-col">
+            <div class="inner-grid-system">
+                <input 
+                [ngClass]="{'is-invalid-radio' : (f.hadAllergyOfPrevDose.errors && submitted )}"
+                type="radio" id="yes36" formControlName="hadAllergyOfPrevDose" value="Yes">
+                <label for="yes36">Yes</label>
+            </div>
+            <div class="inner-grid-system">
+                <input type="radio" id="no36" formControlName="hadAllergyOfPrevDose" value="No">
+                <label for="no36">No</label>
+            </div>
+            <div class="inner-grid-system">
+                <input type="radio" id="dontknow36" formControlName="hadAllergyOfPrevDose" value="dontknow">
+                <label for="dontknow36">Don’t Know</label>
+            </div>   
+            <!-- <div class="show-error" *ngIf="submitted && f.potentialContradiction.get('hadAllergyRelatedToPolyGlycol').errors">
+                <small *ngIf="f.potentialContradiction.get('hadAllergyRelatedToPolyGlycol').errors.required"> hadAllergyRelatedToPolyGlycol is required</small>
+            </div>    -->
+        </div>
+        </div>
+
+
+         <!-- Fifth Radio -->
+        <div class="radio-row-main">
+            <div class="left-col-main">
+                <span>3.</span> Have you ever had an allergic reaction to another vaccine (other than COVID-19 vaccine) or an
+                injectable medication?
+                (This would include a severe allergic reaction [e.g., anaphylaxis] that required treatment with epinephrine or EpiPen® or that
+                caused you to go to the hospital. It would also include an allergic reaction that occurred within 4 hours that caused hives,
+                swelling, or respiratory distress, including wheezing.)
+            </div>
+            <div class="radio-btn-group-main right-col">
+                <div class="inner-grid-system">
+                    <input  [ngClass]="{'is-invalid-radio' : (f.hadAllergyAfterOtherDoseOrInjectableFirst.errors && submitted )}"
+                     formControlName="hadAllergyAfterOtherDoseOrInjectableFirst" type="radio" id="yes21" value="Yes">
+                    <label for="yes21">Yes</label>
+                </div>
+                <div class="inner-grid-system">
+                    <input formControlName="hadAllergyAfterOtherDoseOrInjectableFirst" type="radio" id="no21" value="No">
+                    <label for="no21">No</label>
+                </div>
+                <div class="inner-grid-system">
+                    <input formControlName="hadAllergyAfterOtherDoseOrInjectableFirst" type="radio" id="dontknow21" value="dontknow">
+                    <label for="dontknow21">Don’t Know</label>
+                </div>    
+                <!-- <div class="show-error" *ngIf="submitted && f.potentialContradiction.get('sick').errors">
+                    <small *ngIf="f.potentialContradiction.get('sick').errors.required"> sick is required</small>
+                </div> -->
+            </div>
+    
+        </div>
+
+        <!-- Sixth Radio -->
+        <div class="radio-row-main">
+            <div class="left-col-main">
+                <span>4.</span> Have you ever had a severe allergic reaction (e.g., anaphylaxis) to something other than a
+                component of COVID-19 vaccine, polysorbate, or any vaccine or injectable medication? This would
+                include food, pet, environmental, or oral medication allergies.
+            </div>
+            <div class="radio-btn-group-main right-col">
+                <div class="inner-grid-system">
+                    <input  [ngClass]="{'is-invalid-radio' : (f.hadAllergyAfterOtherDoseOrInjectableSecond.errors && submitted )}"
+                     formControlName="hadAllergyAfterOtherDoseOrInjectableSecond" type="radio" id="yes51" value="Yes">
+                    <label for="yes51">Yes</label>
+                </div>
+                <div class="inner-grid-system">
+                    <input formControlName="hadAllergyAfterOtherDoseOrInjectableSecond" type="radio" id="no51" value="No">
+                    <label for="no51">No</label>
+                </div>
+                <div class="inner-grid-system">
+                    <input formControlName="hadAllergyAfterOtherDoseOrInjectableSecond" type="radio" id="dontknow51" value="dontknow">
+                    <label for="dontknow51">Don’t Know</label>
+                </div>    
+                <!-- <div class="show-error" *ngIf="submitted && f.potentialContradiction.get('sick').errors">
+                    <small *ngIf="f.potentialContradiction.get('sick').errors.required"> sick is required</small>
+                </div> -->
+            </div>
+    
+        </div>
+
+           <!-- Seventh Radio -->
+        <div class="radio-row-main">
+            <div class="left-col-main">
+                <span>5.</span>Have you received any vaccine in the last 14 days?
+            </div>
+            <div class="radio-btn-group-main right-col">
+                <div class="inner-grid-system">
+                    <input  [ngClass]="{'is-invalid-radio' : (f.receivedDoseIn14Days.errors && submitted )}"
+                     formControlName="receivedDoseIn14Days" type="radio" id="yes37" value="Yes">
+                    <label for="yes37">Yes</label>
+                </div>
+                <div class="inner-grid-system">
+                    <input formControlName="receivedDoseIn14Days" type="radio" id="no37" value="No">
+                    <label for="no37">No</label>
+                </div>
+                <div class="inner-grid-system">
+                    <input formControlName="receivedDoseIn14Days" type="radio" id="dontknow37" value="dontknow">
+                    <label for="dontknow37">Don’t Know</label>
+                </div>    
+                <!-- <div class="show-error" *ngIf="submitted && f.potentialContradiction.get('sick').errors">
+                    <small *ngIf="f.potentialContradiction.get('sick').errors.required"> sick is required</small>
+                </div> -->
+            </div>
+    
+        </div>
+
+          <!-- Eighth Radio -->
+        <div class="radio-row-main">
+            <div class="left-col-main">
+                <span>6.</span>Have you ever had a positive test for COVID-19 or has a doctor ever told you that you had COVID-19?
+            </div>
+            <div class="radio-btn-group-main right-col">
+                <div class="inner-grid-system">
+                    <input  [ngClass]="{'is-invalid-radio' : (f.hadCovidPositive.errors && submitted )}"
+                     formControlName="hadCovidPositive" type="radio" id="yes33" value="Yes">
+                    <label for="yes33">Yes</label>
+                </div>
+                <div class="inner-grid-system">
+                    <input formControlName="hadCovidPositive" type="radio" id="no33" value="No">
+                    <label for="no33">No</label>
+                </div>
+                <div class="inner-grid-system">
+                    <input formControlName="hadCovidPositive" type="radio" id="dontknow33" value="dontknow">
+                    <label for="dontknow33">Don’t Know</label>
+                </div>    
+                <!-- <div class="show-error" *ngIf="submitted && f.potentialContradiction.get('sick').errors">
+                    <small *ngIf="f.potentialContradiction.get('sick').errors.required"> sick is required</small>
+                </div> -->
+            </div>
+    
+        </div>
+
+            <!-- Ninth Radio -->
+        <div class="radio-row-main">
+                <div class="left-col-main">
+                    <span>7.</span>Have you received passive antibody therapy (monoclonal antibodies or convalescent serum) as
+                    treatment for COVID-19?
+                </div>
+                <div class="radio-btn-group-main right-col">
+                    <div class="inner-grid-system">
+                        <input  [ngClass]="{'is-invalid-radio' : (f.receivedTherapy.errors && submitted )}"
+                         formControlName="receivedTherapy" type="radio" id="yes77" value="Yes">
+                        <label for="yes77">Yes</label>
+                    </div>
+                    <div class="inner-grid-system">
+                        <input formControlName="receivedTherapy" type="radio" id="no77" value="No">
+                        <label for="no77">No</label>
+                    </div>
+                    <div class="inner-grid-system">
+                        <input formControlName="receivedTherapy" type="radio" id="dontknow77" value="dontknow">
+                        <label for="dontknow77">Don’t Know</label>
+                    </div>    
+                    <!-- <div class="show-error" *ngIf="submitted && f.potentialContradiction.get('sick').errors">
+                        <small *ngIf="f.potentialContradiction.get('sick').errors.required"> sick is required</small>
+                    </div> -->
+                </div>
+        
+        </div>
+
+
+            
+            <!-- Ten Radio -->
+        <div class="radio-row-main">
+                <div class="left-col-main">
+                    <span>8.</span>Do you have a weakened immune system caused by something such as HIV infection or cancer or do
+                    you take immunosuppressive drugs or therapies?
+                </div>
+                <div class="radio-btn-group-main right-col">
+                    <div class="inner-grid-system">
+                        <input  [ngClass]="{'is-invalid-radio' : (f.haveWeekImmuneSystem.errors && submitted )}"
+                         formControlName="haveWeekImmuneSystem" type="radio" id="yes89" value="Yes">
+                        <label for="yes89">Yes</label>
+                    </div>
+                    <div class="inner-grid-system">
+                        <input formControlName="haveWeekImmuneSystem" type="radio" id="no89" value="No">
+                        <label for="no89">No</label>
+                    </div>
+                    <div class="inner-grid-system">
+                        <input formControlName="haveWeekImmuneSystem" type="radio" id="dontknow89" value="dontknow">
+                        <label for="dontknow89">Don’t Know</label>
+                    </div>    
+                    <!-- <div class="show-error" *ngIf="submitted && f.potentialContradiction.get('sick').errors">
+                        <small *ngIf="f.potentialContradiction.get('sick').errors.required"> sick is required</small>
+                    </div> -->
+                </div>
+        
+        </div>
+
+     <!-- Eleven Radio -->
+        <div class="radio-row-main">
+                <div class="left-col-main">
+                    <span>9.</span>Do you have a bleeding disorder or are you taking a blood thinner?
+                </div>
+                <div class="radio-btn-group-main right-col">
+                    <div class="inner-grid-system">
+                        <input  [ngClass]="{'is-invalid-radio' : (f.haveBleedingDisorder.errors && submitted )}"
+                         formControlName="haveBleedingDisorder" type="radio" id="yes55" value="Yes">
+                        <label for="yes55">Yes</label>
+                    </div>
+                    <div class="inner-grid-system">
+                        <input formControlName="haveBleedingDisorder" type="radio" id="no55" value="No">
+                        <label for="no55">No</label>
+                    </div>
+                    <div class="inner-grid-system">
+                        <input formControlName="haveBleedingDisorder" type="radio" id="dontknow55" value="dontknow">
+                        <label for="dontknow55">Don’t Know</label>
+                    </div>    
+                    <!-- <div class="show-error" *ngIf="submitted && f.potentialContradiction.get('sick').errors">
+                        <small *ngIf="f.potentialContradiction.get('sick').errors.required"> sick is required</small>
+                    </div> -->
+                </div>
+        
+        </div>
+
+            
+     <!-- Twelve Radio -->
+        <div class="radio-row-main">
+        <div class="left-col-main">
+            <span>10.</span>Are you pregnant or breastfeeding?
+        </div>
+        <div class="radio-btn-group-main right-col">
+            <div class="inner-grid-system">
+                <input  [ngClass]="{'is-invalid-radio' : (f.isPregOrBreastfeeding.errors && submitted )}"
+                 formControlName="isPregOrBreastfeeding" type="radio" id="yes61" value="Yes">
+                <label for="yes61">Yes</label>
+            </div>
+            <div class="inner-grid-system">
+                <input formControlName="isPregOrBreastfeeding" type="radio" id="no61" value="No">
+                <label for="no61">No</label>
+            </div>
+            <div class="inner-grid-system">
+                <input formControlName="isPregOrBreastfeeding" type="radio" id="dontknow61" value="dontknow">
+                <label for="dontknow61">Don’t Know</label>
+            </div>    
+            <!-- <div class="show-error" *ngIf="submitted && f.potentialContradiction.get('sick').errors">
+                <small *ngIf="f.potentialContradiction.get('sick').errors.required"> sick is required</small>
+            </div> -->
+        </div>
+
+        </div>
+
+            
+
+
+     
+ 
+
+
+       <div class="last-button-row">
+           <button class="next-btn" (click)="onSubmit()" > <i class="fa" [ngClass]="{'fa-spin fa-spinner': isLoading}"></i>Submit</button>
+       </div>
+    </div>
+   </form>         
+
+
+
+</div>

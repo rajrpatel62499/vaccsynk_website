@@ -1,0 +1,43 @@
+<div class="register-main-area">
+    <div class="left-col">
+        <div class="logo-login" [routerLink]="[AppRoutes.ROOT]">
+            <img src="../../../assets/images/logo.svg" alt="logo" title="logo">
+        </div>
+        <h1 class="heading">
+           <span> Welcome!</span> Now, immunization made convenient and reliable with Vaccsynk’s one-stop vaccination management platform. 
+
+        </h1>
+        <img src="../../../assets/images/Login-pic.svg" title="illustration-vector" alt="vector" class="ilu-vector">
+    </div>
+    <div class="righ-col">
+        <div class="first-row-for-ask">Don’t have an account? <a [routerLink]="[ AppRoutes.ROOT, AppRoutes.REGISTER]" title="login">Register</a></div>
+        <div class="main-login-area-div">
+            <div class="login-text">Verification</div>
+            <p class="short-description">Enter OTP sent to your  mobile number.</p>
+            <div class="form-login-main">
+                <div class="f-login-main" >
+                    <ng-otp-input #ngOtpInput (onInputChange)="onOtpChange($event)"  [config]="config"></ng-otp-input>
+
+                    <button 
+                        (click)="verifyCode()"
+                        [disabled]="isLoading"
+                        class="custom-btn register-btn">
+                        <i class="fa" [ngClass]="{'fa-spin fa-spinner': isLoading}"></i>
+                        Verify code
+                    </button>
+                    <button 
+                    (click)="resendCode()"
+                    class="resend-code">Resend Code</button>
+ 
+                </div>
+              
+                
+            </div>
+
+        </div>
+
+
+    </div>
+
+
+</div>

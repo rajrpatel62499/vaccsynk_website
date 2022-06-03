@@ -1,0 +1,21 @@
+<div class="main-popup-clas">
+    <div class="img-class">
+        <img src="assets/images/covid19vector.svg"/>
+    </div>
+    <div class="verify-heading"> Have you ever received a dose of</div>
+    <p class="verify-heading">COVID-19 vaccine?</p>
+
+    <div  class="click-verify-main">    
+        <button  class="click-to-verify-one" [routerLink]="[AppRoutes.ROOT, AppRoutes.USER_REG_F]"  (click)="dialogRef.close()"><i class="fa" [ngClass]="{'fa-spin fa-spinner': isLoading}"></i>No</button>
+        <button  class="click-to-verify" (click)="openDialogFirstDose()"><i class="fa" [ngClass]="{'fa-spin fa-spinner': isLoading}"></i>Yes</button>
+    </div>
+  
+    <button class="cross-btn" (click)="dialogRef.close()">
+        <img src="assets/images/cross.svg"/>
+    </button>
+    
+</div>
+
+<!-- <ng-template #verifiedBlock>
+    Verfied
+</ng-template> -->

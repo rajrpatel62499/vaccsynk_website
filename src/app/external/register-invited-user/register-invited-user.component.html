@@ -1,0 +1,90 @@
+<div class="register-main-area">
+    <div class="left-col">
+        <div class="logo-login"  [routerLink]="[AppRoutes.ROOT]">
+            <img src="../../../assets/images/logo.svg" alt="logo" title="logo">
+        </div>
+        <h1 class="heading">
+           <span> Welcome!</span> Now, immunization made convenvient and reliable with Vaccsynk’s one-stop vaccination management platform. 
+
+        </h1>
+        <img src="../../../assets/images/Login-pic.svg" title="illustration-vector" alt="vector" class="ilu-vector">
+    </div>
+    <div class="righ-col">
+        <div class="first-row-for-ask">Already have an account ? <a [routerLink]="[ AppRoutes.ROOT, AppRoutes.LOGIN]" title="login">Login</a></div>
+        <div class="main-login-area-div">
+            <div class="login-text">Hello! Register to get started</div>
+            <div class="form-login-main">
+                <form [formGroup]="registerForm" class="f-login-main">
+                    <div class="comman-filed full-name">
+                        <input type="text" 
+                        maxlength="50"
+                        appInputRestriction="noSpecialChars"
+                        formControlName="name" class="form-control"  [ngClass]="{ 'is-invalid': submitted && f.name.errors }" placeholder="Full Name"/>
+                        <div *ngIf="submitted && f.name.errors" >
+                            <div class="invalid"*ngIf="f.name.errors.required"> Name is required</div>
+                            <div class="invalid"*ngIf="f.name.errors.pattern"> Name should not be only numeric or special character</div>
+                        </div>
+                    </div>
+                    <div class="comman-filed mobile-num">
+                        <input OnlyNumeric 
+                            minlength="10"
+                            maxlength="10"
+                            type="text" formControlName="mobile" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.mobile.errors }" placeholder="Mobile Number"/>
+                        <div *ngIf="submitted && f.mobile.errors" >
+                            <div class="invalid" *ngIf="f.mobile.errors.required"> Number is required</div>
+                            <!-- <small *ngIf="f.mobile.errors.maxlength"> mobile should be less than {{f.mobile.errors.maxlength.requiredLength}}</small> -->
+                            <small class="invalid" *ngIf="f.mobile.errors.maxlength"> Please enter a valid Mobile Number</small>
+                            <small class="invalid" *ngIf="f.mobile.errors.minlength"> Please enter a valid Mobile Number</small>
+                        </div>
+                    </div>
+                    <div class="comman-filed email-id">
+                        <input type="text" formControlName="email" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.email.errors }"  placeholder="Email Address"/>
+                        <div *ngIf="submitted && f.email.errors" >
+                            <div class="invalid" *ngIf="f.email.errors.required">Email is required</div>
+                            <div class="invalid" *ngIf="f.email.errors.email">Email must be a valid email address</div>
+                            <div class="invalid" *ngIf="f.email.errors.pattern">Email must be a valid email address</div>
+                        </div>
+                    </div>
+                    <div class="comman-filed password-main">
+                        <input type="text"  formControlName="password" class="form-control" maxlength="12" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" placeholder="Password" [type]="hide ? 'password' : 'text'"/>
+                        <button type="button" mat-icon-button matSuffix  [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                            <img (click)="hide = !hide"src="../../../assets/images/eye-icon.svg" title="eye-icon">
+                        </button>
+                        <div *ngIf="submitted && f.password.errors" >
+                            <div class="invalid" *ngIf="f.password.errors.required">Password is required</div>
+                            <div class="invalid" *ngIf="f.password.errors.minlength">Password must be at least 6 characters</div>
+                        </div>
+                      
+                    </div>
+                    <div class="comman-filed password-main">
+                        <input type="text" formControlName="confirmPassword" class="form-control" maxlength="12" [ngClass]="{ 'is-invalid': submitted && f.confirmPassword.errors }" placeholder="Confirm Password" [type]="hide1 ? 'password' : 'text'"/>
+                        <button type="button" mat-icon-button matSuffix  [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide1">
+                            <img (click)="hide1 = !hide1" src="../../../assets/images/eye-icon.svg" title="eye-icon">
+                        </button>
+                        <div *ngIf="submitted && f.confirmPassword.errors" >
+                            <div class="invalid" *ngIf="f.confirmPassword.errors.required">Confirm Password is required</div>
+                            <div class="invalid" *ngIf="f.confirmPassword.errors.mustMatch">Passwords must match</div>
+                        </div>
+                      
+                    </div>
+                    <div class="inner-third-col">
+                        <section class="example-section check-box-tc-register">
+                            <mat-checkbox [formControl]="terms" class="example-margin"></mat-checkbox>By registering, I agree to <a class="href-class" href="https://vaccsynk.com/termsandconditions">T&C </a>& <a class="href-class" href="https://vaccsynk.com/privacypolicy">Privacy Policy</a>
+                        </section>
+                    </div>
+                    <button 
+                    [disabled]="isLoading"
+                    (click)="onSubmit()"
+                    type="submit"
+                    class="custom-btn register-btn" >
+                    <i class="fa" [ngClass]="{'fa-spin fa-spinner': isLoading, 'fa-user-plus': !isLoading}"></i>
+                        Register
+                    </button>
+
+                </form>
+
+            </div>
+
+        </div>
+    </div>
+</div>
